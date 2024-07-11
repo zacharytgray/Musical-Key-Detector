@@ -7,16 +7,16 @@ import requests
 from bs4 import BeautifulSoup
 import time
 
+import spotipy
+from spotipy.oauth2 import SpotifyClientCredentials
+from spotifyConfig import SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET  # Include your own Client ID and Client Secret
+
 DURATION = 5  # seconds
 SAMPLE_RATE = 44100  # Sample rate in Hz (CD quality)
 FILENAME = "songSnippet.mp3"
 ERRORSTR = "\nNo Song Detected. Please Try Again"
 SLEEP_DURATION = 2 # seconds
 shazam = Shazam()
-
-import spotipy
-from spotipy.oauth2 import SpotifyClientCredentials
-from spotifyConfig import SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET
 
 
 def searchSongOnSpotify(title, artist):
@@ -36,7 +36,7 @@ def getAudioFeatures(track):
     if audioFeatures and len(audioFeatures) > 0:
         return audioFeatures[0]
     else:
-        return none
+        return None
 
 def getKeyName(key):
     # Map Spotify key integers to musical key names
